@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Example service. Delete this and src/example.json. Accessible at /api/sample -->
+
+<SelectService>
+    
+    <parameters>
+        <list>
+            <RequestParameter>
+                <name>state</name>
+                <defaultValue></defaultValue>
+            </RequestParameter>
+        </list>
+    </parameters>
+    
+    <binding>
+        <ClasspathInputBinding>
+            <path>/customers.json</path>
+            <input>
+                <JSONInput />
+            </input>
+        </ClasspathInputBinding>
+    </binding>
+    
+    <transformers>
+        <list>
+            <OrFilter>
+                <filters>
+                    <list>
+                        <!-- This filter makes all values return if state is not set-->
+                        <ParameterFilter>
+                            <filter>
+                                <EqualsFilter>
+                                    <key>state</key>
+                                    <value></value>
+                                </EqualsFilter>
+                            </filter>
+                        </ParameterFilter>
+                        <!-- This filter matches only records that equal the state parameter -->
+                        <EqualsFilter>
+                            <key>STATE</key>
+                            <value>
+                                <ParameterValueGenerator>
+                                    <name>state</name>
+                                </ParameterValueGenerator>
+                            </value>
+                        </EqualsFilter>
+                    </list>
+                </filters>
+            </OrFilter>
+        </list>
+    </transformers>
+    
+    <output>
+        <!-- Output in JSON format -->
+        <JSONOutput />
+    </output>
+    
+</SelectService>
