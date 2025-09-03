@@ -5,6 +5,7 @@
     <artifactId>convirgance-web-archetype</artifactId>
     <version>0.1.0</version>
     <packaging>maven-archetype</packaging>
+    <name>Convirgance (Web Services) Archetype</name>
     <description>
         Maven Archetype for starting a new Convirgance (Web Services) project
     </description>
